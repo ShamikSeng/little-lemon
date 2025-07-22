@@ -1,8 +1,19 @@
 // src/Header.js
+
+import React from 'react';
+
 function Header() {
   return (
     <header>
-      <img src="/images/logo.png" alt="Little Lemon Logo" />
+      <h1>Little Lemon</h1>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Menu</li>
+          <li>Reservations</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
     </header>
   );
 }

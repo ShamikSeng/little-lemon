@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
+/* === Global Resets & Base Styles === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fffdf7;
+  color: #333;
+  line-height: 1.6;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* === Headings and Text === */
+h1 {
+  font-size: 2.5rem;
+  color: #495e57;
+  margin-bottom: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h2 {
+  font-size: 2rem;
+  color: #495e57;
+  margin-bottom: 0.8rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #495e57;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+span {
+  font-size: 1rem;
+  color: #495e57;
+}
+
+/* === Navigation === */
+nav {
+  background-color: #f4ce14;
+  padding: 1rem 2rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+nav li {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+nav li:hover {
+  color: #333;
+}
+
+/* === Layout & Components === */
+.app {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+header,
+footer {
+  background-color: #f4ce14;
+  text-align: center;
+  padding: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+main {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+
+/* === Card Style === */
+.card {
+  flex: 1 1 300px;
+  background-color: #edefee;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === Images === */
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* === Footer === */
+footer p {
+  font-size: 0.875rem;
+  color: #333;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .section-row {
+    flex-direction: column;
+  }
+
+  main {
+    padding: 1rem;
   }
 }
