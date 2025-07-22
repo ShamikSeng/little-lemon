@@ -1,27 +1,48 @@
-// src/Main.js
+import React, { useReducer } from "react";
+import BookingForm from './components/BookingForm';
+import ConfirmedBooking from './components/ConfirmedBooking';
+import { Routes, Route, useNavigate } from "react-router-dom";
 
-import React from 'react';
+// Ensure fetchAPI and submitAPI are pulled from global scope
+const fetchAPI = window.fetchAPI || (() => []);
+const submitAPI = window.submitAPI || (() => false);
 
-function Main() {
+// Reducer to update times
+const updateTimes = (state, action) => fetchAPI(new Date(action));
+
+// Initialize with today's available times
+const initializeTimes = () => fetchAPI(new Date());
+
+const Main = () => {
+  const [availableTimes, dispatchOnDateChange] = useReducer(updateTimes, initializeTimes());
+  const navigate = useNavigate();
+
+  const submitForm = (formData) => {
+    const success = submitAPI(formData);
+    if (success) {
+      navigate('/confirmed');
+    } else {
+      alert("Booking failed. Please try again.");
+    }
+  };
+
   return (
     <main>
-      <h2>Welcome to Little Lemon</h2>
-      <div className="section-row">
-        <div className="card">
-          <h3>Reserve a Table</h3>
-          <p>Book your favorite spot online now!</p>
-        </div>
-        <div className="card">
-          <h3>Our Menu</h3>
-          <p>Explore our fresh Mediterranean flavors.</p>
-        </div>
-        <div className="card">
-          <h3>Reviews</h3>
-          <p>What our customers say about us.</p>
-        </div>
-      </div>
+      <Routes>
+        <Route
+          path="/booking"
+          element={
+            <BookingForm
+              availableTimes={availableTimes}
+              dispatchOnDateChange={dispatchOnDateChange}
+              submitForm={submitForm}
+            />
+          }
+        />
+        <Route path="/confirmed" element={<ConfirmedBooking />} />
+      </Routes>
     </main>
   );
-}
+};
 
 export default Main;
